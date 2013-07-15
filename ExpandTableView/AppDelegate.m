@@ -7,12 +7,17 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Quotation.h"
+#import "Play.h"
+#import "ExpandTableViewController.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSArray *playsArray = [self getPlayFromFile];
+    ExpandTableViewController *expandTableView = (ExpandTableViewController *)self.window.rootViewController;
+    expandTableView.playsArray = playsArray;
     return YES;
 }
 							
@@ -43,4 +48,41 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (NSArray *)getPlayFromFile
+{
+    NSURL *playUrl = [[NSBundle mainBundle] URLForResource:@"PlaysAndQuotations" withExtension:@"plist"];
+    //NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfURL:playUrl];
+    NSArray *playsArr = [NSArray arrayWithContentsOfURL:playUrl];
+    NSMutableArray *plays = [NSMutableArray array];
+    for (int i=0;i<playsArr.count;i++ ) {
+        Play *play = [[Play alloc] init];
+        NSDictionary *playDict = playsArr[i];
+        NSString *playName = [playDict objectForKey:@"playName"];
+        play.playName = playName;
+        
+        NSArray *quotationArr = [playDict objectForKey:@"quotations"];
+        NSMutableArray *quotations = [NSMutableArray array];
+        for (NSDictionary *quotationDict in quotationArr) {
+            int act =[[quotationDict objectForKey:@"act"] intValue];
+            int scene = [[quotationDict objectForKey:@"scene"] intValue];
+            NSString *character = [quotationDict objectForKey:@"character"];
+            NSString *quotation = [quotationDict objectForKey:@"quotation"];
+            
+            Quotation *q = [[Quotation alloc] init];
+            q.act = act;
+            q.scene = scene;
+            q.character = character;
+            q.quotation = quotation;
+            
+            [quotations addObject:q];
+        }
+        play.quotations = quotations;
+        
+        [plays addObject:play];
+    }
+    
+    NSLog(@"plays==%@",plays);
+    return plays;
+}
 @end

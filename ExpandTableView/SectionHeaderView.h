@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SectionHeaderView.h
 //  ExpandTableView
 //
 //  Created by andyzhang on 13-7-15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface SectionHeaderView : UITableViewHeaderFooterView
 
 @end
