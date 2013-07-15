@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ExpandTableViewController : UITableViewController
+#import "SectionHeaderView.h"
+@interface ExpandTableViewController : UITableViewController<SectionHeaderViewProtocol>
 
 @property (nonatomic,strong)NSArray *playsArray;
-
-
 @property (nonatomic,strong)NSMutableArray *sectionInfoArray;
+
 @end

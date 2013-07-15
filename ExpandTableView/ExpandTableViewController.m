@@ -109,6 +109,24 @@
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    SectionHeaderView *sectionHeaderView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderViewReuseId];
+    SectionInfo *sectionInfo = self.sectionInfoArray[section];
+    sectionHeaderView.titleLabel.text = sectionInfo.play.playName;
+    sectionHeaderView.section = section;
+    
+    sectionHeaderView.delegate = self;
+    
+    return sectionHeaderView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SectionInfo *sectionInfo = self.sectionInfoArray[indexPath.section];
+    
+    return [[sectionInfo objectInRowHeightsAtIndex:indexPath.row] floatValue];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,6 +187,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
