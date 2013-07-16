@@ -13,4 +13,6 @@
 @property (nonatomic,strong)NSArray *playsArray;
 @property (nonatomic,strong)NSMutableArray *sectionInfoArray;
 
+@property (nonatomic) NSInteger openSectionIndex;
+
 @end

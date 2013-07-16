@@ -16,7 +16,8 @@
 {
     // Override point for customization after application launch.
     NSArray *playsArray = [self getPlayFromFile];
-    ExpandTableViewController *expandTableView = (ExpandTableViewController *)self.window.rootViewController;
+    UINavigationController *naviController = (UINavigationController *)self.window.rootViewController;
+    ExpandTableViewController *expandTableView = naviController.viewControllers[0];
     expandTableView.playsArray = playsArray;
     return YES;
 }

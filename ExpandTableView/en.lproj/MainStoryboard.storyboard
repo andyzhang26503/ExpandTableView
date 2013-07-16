@@ -8,21 +8,21 @@
         <scene sceneID="hur-OJ-B0T">
             <objects>
                 <tableViewController id="PMe-5b-JrS" customClass="ExpandTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="Lw4-VW-C2d">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="89" sectionHeaderHeight="22" sectionFooterHeight="22" id="Lw4-VW-C2d">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="99" id="0C7-ZP-b4m" customClass="QuoteCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="99"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="89" id="0C7-ZP-b4m" customClass="QuoteCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Character" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1M-ZA-FCo">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="Z0W-es-rtK"/>
+                                                <constraint firstAttribute="width" constant="83" id="fm3-fn-Tj7"/>
                                                 <constraint firstAttribute="height" constant="21" id="lme-Yp-BcN"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -31,7 +31,7 @@
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Act,Scene" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1in-jy-pCw">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="78" id="671-eO-bDi"/>
+                                                <constraint firstAttribute="width" constant="105" id="YU8-Ym-Prt"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -40,7 +40,8 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSX-Hi-PM8">
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="59" id="6hz-ao-WsK"/>
+                                                <constraint firstAttribute="height" constant="44" id="8OK-bD-8IM"/>
+                                                <constraint firstAttribute="width" constant="298" id="toT-5m-9BR"/>
                                             </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -50,14 +51,13 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="V1M-ZA-FCo" firstAttribute="leading" secondItem="0C7-ZP-b4m" secondAttribute="leading" constant="20" type="default" id="0Ev-1R-nVa"/>
                                     <constraint firstItem="V1M-ZA-FCo" firstAttribute="bottom" secondItem="1in-jy-pCw" secondAttribute="bottom" type="default" id="Cza-Ja-JuB"/>
                                     <constraint firstAttribute="trailing" secondItem="1in-jy-pCw" secondAttribute="trailing" constant="20" type="default" id="EMI-el-sYv"/>
-                                    <constraint firstItem="kSX-Hi-PM8" firstAttribute="top" secondItem="0C7-ZP-b4m" secondAttribute="top" constant="27" id="FUM-3S-Hb8"/>
                                     <constraint firstItem="1in-jy-pCw" firstAttribute="top" secondItem="V1M-ZA-FCo" secondAttribute="top" type="default" id="Fy5-cr-dD5"/>
+                                    <constraint firstItem="V1M-ZA-FCo" firstAttribute="leading" secondItem="kSX-Hi-PM8" secondAttribute="leading" type="default" id="K2a-BA-QDo"/>
                                     <constraint firstItem="V1M-ZA-FCo" firstAttribute="top" secondItem="0C7-ZP-b4m" secondAttribute="top" constant="7" id="S2v-0d-rzJ"/>
-                                    <constraint firstItem="kSX-Hi-PM8" firstAttribute="leading" secondItem="0C7-ZP-b4m" secondAttribute="leading" constant="20" type="default" id="ftw-nT-5FO"/>
-                                    <constraint firstAttribute="trailing" secondItem="kSX-Hi-PM8" secondAttribute="trailing" constant="20" type="default" id="lFK-eV-DMi"/>
+                                    <constraint firstItem="kSX-Hi-PM8" firstAttribute="top" secondItem="0C7-ZP-b4m" secondAttribute="top" constant="32" id="fKp-37-PZk"/>
+                                    <constraint firstItem="V1M-ZA-FCo" firstAttribute="leading" secondItem="0C7-ZP-b4m" secondAttribute="leading" constant="12" id="o29-E9-jXY"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="actAndSceneLabel" destination="1in-jy-pCw" id="2UG-IF-Irc"/>
@@ -96,6 +96,22 @@
             <point key="canvasLocation" x="215" y="160"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ExpandTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExpandTableViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="QuoteCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuoteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="actAndSceneLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="characterLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quotationTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

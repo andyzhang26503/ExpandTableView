@@ -40,6 +40,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.sectionHeaderHeight = HEADER_HEIGHT;
+    
+    self.openSectionIndex = NSNotFound;
     
     UINib *headerNib = [UINib nibWithNibName:@"SectionHeaderView" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:headerNib forHeaderFooterViewReuseIdentifier: HeaderViewReuseId];
@@ -81,7 +84,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return self.playsArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -109,17 +112,20 @@
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
+-(UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
+    
     SectionHeaderView *sectionHeaderView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderViewReuseId];
-    SectionInfo *sectionInfo = self.sectionInfoArray[section];
+    
+    SectionInfo *sectionInfo = (self.sectionInfoArray)[section];
+    
     sectionHeaderView.titleLabel.text = sectionInfo.play.playName;
     sectionHeaderView.section = section;
-    
     sectionHeaderView.delegate = self;
+    sectionHeaderView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but02_selected"]];
     
     return sectionHeaderView;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -167,21 +173,6 @@
 */
 
 
--(UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    SectionHeaderView *sectionHeaderView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderViewReuseId];
-    
-//    APLSectionInfo *sectionInfo = (self.sectionInfoArray)[section];
-//    
-//    sectionHeaderView.titleLabel.text = sectionInfo.play.name;
-//    sectionHeaderView.section = section;
-//    sectionHeaderView.delegate = self;
-    
-    return sectionHeaderView;
-}
-
-
-
 
 #pragma mark - Table view delegate
 
@@ -196,5 +187,82 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+
+#pragma mark - Section header delegate
+
+-(void)sectionHeaderView:(SectionHeaderView*)sectionHeaderView sectionOpened:(NSInteger)sectionOpened {
+    
+	SectionInfo *sectionInfo = (self.sectionInfoArray)[sectionOpened];
+    
+	sectionInfo.open = YES;
+    
+    /*
+     Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
+     */
+    NSInteger countOfRowsToInsert = [sectionInfo.play.quotations count];
+    NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
+        [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i inSection:sectionOpened]];
+    }
+    
+    /*
+     Create an array containing the index paths of the rows to delete: These correspond to the rows for each quotation in the previously-open section, if there was one.
+     */
+    NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
+    
+    NSInteger previousOpenSectionIndex = self.openSectionIndex;
+    if (previousOpenSectionIndex != NSNotFound) {
+        
+		SectionInfo *previousOpenSection = (self.sectionInfoArray)[previousOpenSectionIndex];
+        previousOpenSection.open = NO;
+        [previousOpenSection.headerView toggleOpenWithUserAction:NO];
+        NSInteger countOfRowsToDelete = [previousOpenSection.play.quotations count];
+        for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
+            [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:previousOpenSectionIndex]];
+        }
+    }
+    
+    // Style the animation so that there's a smooth flow in either direction.
+    UITableViewRowAnimation insertAnimation;
+    UITableViewRowAnimation deleteAnimation;
+    if (previousOpenSectionIndex == NSNotFound || sectionOpened < previousOpenSectionIndex) {
+        insertAnimation = UITableViewRowAnimationTop;
+        deleteAnimation = UITableViewRowAnimationBottom;
+    }
+    else {
+        insertAnimation = UITableViewRowAnimationBottom;
+        deleteAnimation = UITableViewRowAnimationTop;
+    }
+    
+    // Apply the updates.
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:insertAnimation];
+    [self.tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:deleteAnimation];
+    [self.tableView endUpdates];
+    self.openSectionIndex = sectionOpened;
+}
+
+
+-(void)sectionHeaderView:(SectionHeaderView*)sectionHeaderView sectionClosed:(NSInteger)sectionClosed {
+    
+    /*
+     Create an array of the index paths of the rows in the section that was closed, then delete those rows from the table view.
+     */
+	SectionInfo *sectionInfo = (self.sectionInfoArray)[sectionClosed];
+    
+    sectionInfo.open = NO;
+    NSInteger countOfRowsToDelete = [self.tableView numberOfRowsInSection:sectionClosed];
+    
+    if (countOfRowsToDelete > 0) {
+        NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
+            [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:sectionClosed]];
+        }
+        [self.tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationTop];
+    }
+    self.openSectionIndex = NSNotFound;
+}
+
 
 @end

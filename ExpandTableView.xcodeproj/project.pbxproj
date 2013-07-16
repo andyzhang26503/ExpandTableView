@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50064C0217953D6C00A9FA54 /* but02_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 50064C0117953D6C00A9FA54 /* but02_selected.png */; };
 		507E69FB17938F410067B87C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E69FA17938F410067B87C /* UIKit.framework */; };
 		507E69FD17938F410067B87C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E69FC17938F410067B87C /* Foundation.framework */; };
 		507E69FF17938F410067B87C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E69FE17938F410067B87C /* CoreGraphics.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50064C0117953D6C00A9FA54 /* but02_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = but02_selected.png; sourceTree = "<group>"; };
 		507E69F717938F410067B87C /* ExpandTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpandTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		507E69FA17938F410067B87C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		507E69FC17938F410067B87C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -128,6 +130,7 @@
 		507E6A0117938F410067B87C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				50064C0117953D6C00A9FA54 /* but02_selected.png */,
 				507E6A2217938FB30067B87C /* carat-open.png */,
 				507E6A2317938FB30067B87C /* carat.png */,
 				507E6A2017938FA80067B87C /* PlaysAndQuotations.plist */,
@@ -225,6 +228,7 @@
 				507E6A2417938FB30067B87C /* carat-open.png in Resources */,
 				507E6A2517938FB30067B87C /* carat.png in Resources */,
 				507E6A301793A96C0067B87C /* SectionHeaderView.xib in Resources */,
+				50064C0217953D6C00A9FA54 /* but02_selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

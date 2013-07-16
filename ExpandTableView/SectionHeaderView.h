@@ -25,4 +25,7 @@
 @property (nonatomic, assign)NSInteger section;
 
 @property (nonatomic, weak)id<SectionHeaderViewProtocol> delegate;
+
+- (IBAction)toggleOpen:(id)sender;
+-(void)toggleOpenWithUserAction:(BOOL)userAction;
 @end
